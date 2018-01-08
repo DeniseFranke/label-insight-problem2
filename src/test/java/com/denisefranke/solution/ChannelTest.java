@@ -1,48 +1,89 @@
 package com.denisefranke.solution;
  
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.List;
-import org.junit.Rule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
  
 public class ChannelTest {
   private Channel channel;
-  private List<Particle> particles;
-  private int positions = 0;
   
   @BeforeEach
   void init() {
-	  channel= new Channel();
+	  channel = new Channel();
   }
     
   @AfterEach
   void tearDown() {
     channel = null;
   }
-  
+ 
   /**
-   * Test 0)  Check exceptions
-   * 		  Returns: Return Exception 
-   *          Reason: If positions passed <= 0 or >50 won't work.
-   * @throws Exception 
+   * ChannelTest0:
+   * Given:  2, ..R....
+   * Returns: "" 
+   * Reason:  This sentence contains every letter at least once
+ * @throws Exception 
    */
-  @Rule
-  public final ExpectedException exception = ExpectedException.none() ;
-  @DisplayName("ChannelTest0 - 0 or null")
+  @DisplayName("TestAnimationTest0")
   @Test
-  public void testChannelTest0() {
-    exception.expect(Exception.class);
-    try {
-		channel.setPositions(-5);
-	} catch (Exception expectedException) {
-		// Do Nothing
-	}
+  void testAnimationTest0() throws Exception {
+    int speed = 2;
+    String init = "..R....";
+    String[] expected = {"..X....", "....X..","......X","......."};
+	assertEquals(expected, channel.animate(speed,init));
+	
+    
   }
-  
+  /**
+    1)  3,  "RR..LRL"
+    Returns:
+      { "XX..XXX",
+        ".X.XX..",
+        "X.....X",
+        "......." }
+    Note that, at the first time step after init, there are actually 4 particles in the chamber,
+    but two are passing through each other at the 4th position
+    2)  2,  "LRLR.LRLR"
+    Returns:
+      { "XXXX.XXXX",
+        "X..X.X..X",
+        ".X.X.X.X.",
+        ".X.....X.",
+        "........." }
+    At time 0 (init) there are 8 particles. At time 1, there are still 6 particles, but only 4
+    positions are occupied since particles are passing through each other.
+    3)  10,  "RLRLRLRLRL"
+    Returns:
+  { "XXXXXXXXXX",
+    ".........." }
+These particles are moving so fast that they all exit the chamber by time 1.
+4)  1,  "..."
+Returns:
+  { "..." }
+5)  1,  "LRRL.LR.LRR.R.LRRL."
+Returns:
+  { "XXXX.XX.XXX.X.XXXX.",
+    "..XXX..X..XX.X..XX.",
+    ".X.XX.X.X..XX.XX.XX",
+    "X.X.XX...X.XXXXX..X",
+    ".X..XXX...X..XX.X..",
+    "X..X..XX.X.XX.XX.X.",
+    "..X....XX..XX..XX.X",
+    ".X.....XXXX..X..XX.",
+    "X.....X..XX...X..XX",
+    ".....X..X.XX...X..X",
+    "....X..X...XX...X..",
+    "...X..X.....XX...X.",
+    "..X..X.......XX...X",
+    ".X..X.........XX...",
+    "X..X...........XX..",
+    "..X.............XX.",
+    ".X...............XX",
+    "X.................X",
+   "..................." }
+   **/ 
  
 
 }
