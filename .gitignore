@@ -1,0 +1,59 @@
+#DeniseFranke's default all purpose .gitignore file c.2018
+
+###################
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+############
+# Packages #
+############
+# only commit raw source, just because I said so ~Mom
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.war
+*.ear
+*.rar
+*.tar
+*.zip
+*.tar.gz
+
+######################
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+# Don't check in VM crash logs either
+hs_err_pid*
+
+######################
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+################
+# IDE Settings #
+################
+# Righto Chap, I don't want your BlueJ or any other IDE files for that matter.
+*.ctxt
+# Don't want these Mobile Tools for Java (J2ME) either
+.mtj.tmp/
+# But I am going to be a good sport and let you have my eclipse .settings :)
+#.settings
+
+/target/
