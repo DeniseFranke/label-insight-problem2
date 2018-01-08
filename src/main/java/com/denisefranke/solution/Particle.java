@@ -1,49 +1,44 @@
 package com.denisefranke.solution;
 
 /**
- * Particle - this is a pojo for Particle
- * with an extra method to get the particle's current location in a channel given the current state of time
+ * Particle - This is a pojo for Particle
  * @author Denise Franke
  *
  */
 
-public class Particle {
-  private int startingLocation = 0;
-  private int speed = 0;
-  private String direction = "L";
+class Particle {
+  private int s; //speed units traveled per unit of time;
+  private char d;  //direction Right = 0 / direction Left = 1 / -1 stationary
+  private int sl; //starting location in channel (0..channelLength)
+  //private boolean eoc = false;// end of channel flag
 
-  public String getDirection() {
-	  return direction;
-  }
+ 
 
-  public void setDirection(String direction) {
-	  this.direction = direction;
-  }
+public Particle(int speed, char direction, int startingLocation) {
+	  s = speed;
+	  d = direction;
+	  sl = startingLocation; //location
+}
 
-  public int getStartingLocation() {
-	  return startingLocation;
-  }
-
-  public void setStartingLocation(int startingLocation) {
-	  this.startingLocation = startingLocation;
-  }
-
-  public int getSpeed() {
-	  return speed;
-  }
-  
-  public void setSpeed(int speed) {
-	  this.speed = speed;
-  }
-  
-  public Integer getCurrentLocationGivenTime(int time) {
-	  if (speed >= 0 && time >=0 ) {
-		  if (direction.equals("L"))  
-    	  		return startingLocation  + (speed * time);
-		  if (direction.equals("R"))
-    	  		return startingLocation - (speed * time);
+public Integer getCurrentLocationGivenTime(int time, int channelLength) {
+	  Integer location = null;	  
+	  if (d == 'R') {
+	    	 location = (sl+(s*time));
+	    	 location = (location >= channelLength) ? null : location;
+	  } else if (d == 'L'){
+		location = (sl-(s*time));
+		location = (location < 0) ? null : location;
 	  }
-	 return null;  	 
+	  return location;
   }
+
+//public boolean isEoc() {
+//	return eoc;
+//}
+
+//public void setEoc(boolean eoc) {
+//	this.eoc = eoc;
+//}
+  
 }
  
