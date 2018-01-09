@@ -74,7 +74,7 @@ public class ParticleTest {
 	 * Test 2)  Test Right with minimal (1) change in time Given:  1, ..R....
 	 * 
 	 */
-	@DisplayName("TestParticleTest2 - SpeedChange")
+	@DisplayName("Particle Test 2 - SpeedChange")
 	@Test
 	void testParticleTest2() {
 		particle = new Particle(1, 'R', 2);
@@ -103,7 +103,7 @@ public class ParticleTest {
 	 * Given:  1, L......
 	 * 
 	 */
-	@DisplayName("TestParticleTest3 - Speed change with left starting at 1")
+	@DisplayName("Particle Test 3 - Speed change with left starting at 1")
 	@Test
 	void testParticleTest3() {
 		particle = new Particle(2, 'L', 0);
@@ -120,7 +120,7 @@ public class ParticleTest {
 	 * Given:  1, ......R
 	 * 
 	 */
-	@DisplayName("TestParticleTest4 - Speed change with right starting at 7")
+	@DisplayName("Particle Test 4 - Speed change with right starting at 7")
 	@Test
 	void testParticleTest4() {
 		particle = new Particle(1, 'R', 6);
